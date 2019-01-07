@@ -3,11 +3,11 @@
 利用redis主从+sentinel实现高可用的redis服务 
 
 测试场景： 
-1、主节点挂了，从节点自动变成主节点（因为主从同步，此时获取的redis数据不会有异常） 
-2、单个主节点运行了一段时间，期间新增了一些key（test1，test2） 
-3、挂掉的节点恢复，sentinel自动将恢复的节点作为当前主节点的从节点（现在上从节点读取key：test1，test2， 是否能获取到？） 
-4、redis主节点和其中一个sentinel同时宕机 
-5、redis 订阅问题
+- 1、主节点挂了，从节点自动变成主节点（因为主从同步，此时获取的redis数据不会有异常） 
+- 2、单个主节点运行了一段时间，期间新增了一些key（test1，test2） 
+- 3、挂掉的节点恢复，sentinel自动将恢复的节点作为当前主节点的从节点（现在上从节点读取key：test1，test2， 是否能获取到？） 
+- 4、redis主节点和其中一个sentinel同时宕机 
+- 5、redis 订阅问题
 
 
 #### 配置说明
@@ -30,11 +30,10 @@ requirepass "123456"
 appendonly yes
 ```
 
-重点（容易出错）
-1、protected-mode no
+重点（容易出错）:
+- 1、protected-mode no
 是否开启保护模式，默认开启。要是配置里没有指定bind和密码。开启该参数后，redis只会本地进行访问，拒绝外部访问。要是开启了密码和bind，可以设为yes。否则最好关闭，设置为no。
-
-2、bind
+- 2、bind
 网上很多解释是错误的，并不是允许哪些ip可以访问redis服务的意思！！！
 通俗易懂的理解：bind配置了什么ip，别人就得访问bind里面配置的ip才访问到redis服务。
 
@@ -98,6 +97,7 @@ Sentinel默认运行在26379端口上，sentinel支持redis协议，所以可以
 另外一种是使用发布/订阅模式来订阅sentinel事件，比如说failover，或者某个redis实例运行出错，等等。
 
 [Sentinel命令](http://redisdoc.com/topic/sentinel.html#sentinel-api "Sentinel命令")
+
 sentinel支持的合法命令如下：
 
 - PING sentinel回复PING.
