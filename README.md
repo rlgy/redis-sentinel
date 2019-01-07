@@ -76,7 +76,6 @@ sentinel auth-pass mymaster 123456
 │   └── redis.conf
 ├── redis5
 │   └── redis.conf
-├── redis.conf
 ├── run.sh
 ├── sentinel1
 │   └── sentinel.conf

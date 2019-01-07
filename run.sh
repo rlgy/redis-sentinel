@@ -1,6 +1,7 @@
 # create network
 docker network create -d bridge --subnet 172.19.0.0/24 redis-network
-
+# pull redis image
+docker pull redis:5.0.3-alpine
 # run redis server 1
 docker run -v $PWD/redis1/redis.conf:/usr/local/etc/redis/redis.conf \
            --name redis1 \
